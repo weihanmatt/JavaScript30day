@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="clock">
+        <div class="second-hand hand"></div>
+        <div class="min-hand hand"></div>
+        <div class="hour-hand hand"></div>
+      </div>
+    </div>
+    <script>
+      const secondHand = document.querySelector('.second-hand')
+      const minHand = document.querySelector('.min-hand')
+      const hourHand = document.querySelector('.hour-hand')
+      function setTime() {
+        const now = new Date()
+        const second = now.getSeconds()
+        const secondDeg = (second / 60) * 360 + 90
+        if (secondDeg === 90) secondHand.style.transition = 'all 0s'
+        else secondHand.style.transition = 'all 0.05s'
+        secondHand.style.transform = `rotate(${secondDeg}deg)`
+
+        const min = now.getMinutes()
+        const minDeg = (min / 60) * 360 + 90
+        if (minDeg === 90) minHand.style.transition = 'all 0s'
+        else minHand.style.transition = 'all 0.1s'
+        minHand.style.transform = `rotate(${minDeg}deg)`
+
+        const hour = now.getHours()
+        const hourDeg = (hour / 60) * 360 + 90
+        if (hourDeg === 90) hourHand.style.transition = 'all 0s'
+        else hourHand.style.transition = 'all 0.1s'
+        hourHand.style.transform = `rotate(${hourDeg}deg)`
+      }
+      setInterval(setTime, 1000)
+    </script>
+    <style>
+      .container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+      .clock {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border: solid 15px black;
+        border-radius: 50%;
+      }
+      .hand {
+        border: solid;
+        width: 50%;
+        height: 3px;
+        background-color: black;
+        text-align: 300px;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>CSS Variables with <span class="hl">JavaScript</span></h2>
+    <div class="container">
+      <label for="spacing">Spacing: </label>
+      <input
+        type="range"
+        name="spacing"
+        min="10"
+        max="200"
+        value="10"
+        data-sizing="px"
+      />
+
+      <label for="blur">Blur: </label>
+      <input
+        type="range"
+        name="blur"
+        min="0"
+        max="25"
+        value="10"
+        data-sizing="px"
+      />
+
+      <label for="base">Base Color</label>
+      <input type="color" name="base" value="#ffc600" />
+
+      <img
+        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571993463176&di=fa1ea86c40b40984c29e06fd7bec5808&imgtype=0&src=http%3A%2F%2F05imgmini.eastday.com%2Fmobile%2F20181003%2F20181003000108_2319e7358b9fb0a738362be1650f822d_1.jpeg"
+        alt=""
+      />
+    </div>
+    <style>
+      :root {
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+      }
+      img {
+        padding: var(--spacing);
+        background-color: var(--base);
+        filter: blur(var(--blur));
+      }
+      .hl {
+        color: var(--base);
+      }
+      body {
+        text-align: center;
+        background-color: #ecf0f1;
+        font-size: 30px;
+        font-weight: 100;
+      }
+    </style>
+    <script>
+      const inputs = document.querySelectorAll('.container input')
+      function handleUpdate() {
+        const suffix = this.dataset.sizing || ''
+        document.documentElement.style.setProperty(
+          `--${this.name}`,
+          this.value + suffix
+        )
+        console.log(suffix)
+      }
+      inputs.forEach(input => input.addEventListener('change', handleUpdate))
+      inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
+    </script>
+  </body>
+</html>
