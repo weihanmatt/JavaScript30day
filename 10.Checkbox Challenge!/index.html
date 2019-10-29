@@ -98,9 +98,7 @@
       const checkboxes = document.querySelectorAll(
         '.inbox input[type="checkbox"]'
       )
-      const boxArr = Array.from(checkboxes)
-      let lastChecked
-      let onOff = false
+
       let lastCheck
 
       function clickHandle(e) {
@@ -118,7 +116,10 @@
 
         lastCheck = this
       }
-
+      //方法二 还没看明白
+      const boxArr = Array.from(checkboxes)
+      let lastChecked
+      let onOff = false
       function handleCheck1(e) {
         if (!lastChecked) lastChecked = this
         onOff = lastChecked.checked ? true : false
