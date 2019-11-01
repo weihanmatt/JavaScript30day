@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const preesed = []
+      const secretCode = 'weihan'
+      window.addEventListener('keyup', e => {
+        preesed.push(e.key)
+        preesed.splice(
+          -secretCode.length - 1,
+          preesed.length - secretCode.length
+        )
+        if (preesed.join('').includes(secretCode)) {
+          document.querySelector('body').style.background = 'black'
+          console.log('GAOL')
+        }
+        console.log(preesed)
+      })
+    </script>
+  </body>
+</html>
